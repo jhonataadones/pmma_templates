@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-    <title>PMMA - 35º BPM | Sistemas Operacionais</title>
+    <title>35º BPM - Sistema Interno</title>
     <style>
         * {
             margin: 0;
@@ -22,7 +22,7 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1400px;
             width: 100%;
         }
 
@@ -68,10 +68,6 @@
             object-fit: cover;
         }
 
-        .brasao span {
-            max-width: 80px;
-        }
-
         .titulo-principal {
             color: #0a1f2e;
             font-size: 28px;
@@ -101,24 +97,25 @@
             display: inline-block;
         }
 
-        /* Cards de serviços */
-        .servicos {
+        /* Seções */
+        .secao {
             background: rgba(255, 255, 255, 0.9);
-            border-radius: 0 0 20px 20px;
-            padding: 40px 30px;
+            padding: 30px 30px;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
 
-        .servicos h2 {
+        .secao-titulo {
             color: #0a1f2e;
             font-size: 24px;
             text-align: center;
             margin-bottom: 30px;
             position: relative;
             padding-bottom: 15px;
+            font-weight: 700;
+            text-transform: uppercase;
         }
 
-        .servicos h2:after {
+        .secao-titulo:after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -130,17 +127,18 @@
             border-radius: 3px;
         }
 
+        /* Cards */
         .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         .card {
             background: white;
             border-radius: 15px;
-            padding: 25px 20px;
+            padding: 20px 20px;
             text-align: center;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
@@ -154,10 +152,6 @@
             transform: translateY(-10px);
             box-shadow: 0 15px 30px rgba(201, 162, 39, 0.3);
             border-color: #c9a227;
-        }
-
-        .card:active {
-            transform: translateY(-5px);
         }
 
         .card::before {
@@ -177,43 +171,48 @@
         }
 
         .card-icone {
-            font-size: 48px;
-            margin-bottom: 15px;
+            font-size: 40px;
+            margin-bottom: 10px;
             color: #0a1f2e;
         }
 
         .card-titulo {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 700;
             color: #0a1f2e;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
             text-transform: uppercase;
         }
 
         .card-descricao {
-            font-size: 14px;
+            font-size: 12px;
             color: #666;
-            line-height: 1.5;
-            margin-bottom: 20px;
+            line-height: 1.4;
         }
 
         .card-badge {
             background: #c9a227;
             color: white;
-            padding: 5px 10px;
+            padding: 3px 8px;
             border-radius: 20px;
-            font-size: 12px;
+            font-size: 10px;
             font-weight: bold;
             display: inline-block;
+            margin-top: 10px;
         }
 
-        /* Cards específicos com cores diferentes */
-        .card-bo { border-left: 5px solid #2b5797; }
-        .card-envolvido { border-left: 5px solid #d32f2f; }
-        .card-veiculo { border-left: 5px solid #4caf50; }
-        .card-objeto { border-left: 5px solid #ff9800; }
-        .card-relato { border-left: 5px solid #9c27b0; }
-        .card-providencias { border-left: 5px solid #00bcd4; }
+        /* Cores específicas por categoria */
+        .card-template { border-left: 5px solid #2b5797; }
+        .card-documento { border-left: 5px solid #d32f2f; }
+        .card-exame { border-left: 5px solid #4caf50; }
+        .card-secao { border-left: 5px solid #c9a227; }
+
+        /* Linha divisória */
+        .divisoria {
+            height: 2px;
+            background: linear-gradient(to right, transparent, #c9a227, transparent);
+            margin: 40px 0 30px 0;
+        }
 
         /* Botões de acesso rápido */
         .acesso-rapido {
@@ -222,8 +221,6 @@
             justify-content: center;
             gap: 15px;
             margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px dashed #c9a227;
         }
 
         .btn-acesso {
@@ -232,7 +229,7 @@
             border: none;
             padding: 12px 25px;
             border-radius: 50px;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
@@ -245,10 +242,6 @@
         .btn-acesso:hover {
             background: #c9a227;
             transform: scale(1.05);
-        }
-
-        .btn-acesso i {
-            font-size: 20px;
         }
 
         /* Rodapé */
@@ -269,7 +262,7 @@
             text-decoration: underline;
         }
 
-        /* Modal de aviso (opcional) */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -323,13 +316,8 @@
             color: white;
         }
 
-        .modal-btn.cancel {
-            background: #f44336;
-            color: white;
-        }
-
-        .modal-btn:hover {
-            transform: scale(1.05);
+        .modal-btn.confirm:hover {
+            background: #45a049;
         }
 
         /* Responsivo */
@@ -356,7 +344,7 @@
         /* Animações */
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+            50% { transform: scale(1.02); }
             100% { transform: scale(1); }
         }
 
@@ -367,16 +355,14 @@
 </head>
 <body>
     <div class="container">
-        <!-- Header Principal -->
+        <!-- Header -->
         <div class="header">
             <div class="brasao-container">
                 <div class="brasao">
-                    <!-- Logo da PMMA (brasao.png) -->
                     <img src="brasao.png" alt="Brasão PMMA" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <span style="display: none;">PMMA</span>
                 </div>
                 <div class="brasao">
-                    <!-- Logo do 35º BPM (brasao35bpm.png) -->
                     <img src="brasao35bpm.png" alt="Brasão 35º BPM" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <span style="display: none;">35º BPM</span>
                 </div>
@@ -384,109 +370,192 @@
             <h1 class="titulo-principal">PMMA – PATRIMÔNIO DOS MARANHENSES</h1>
             <h2 class="subtitulo">35º BPM – O GUARDIÃO DO MÉDIO SERTÃO</h2>
             <div class="lema">
-                "Proteger e Servir com Honra e Dedicação"
+                "Servir e Proteger com Honra e Dedicação"
             </div>
         </div>
 
-        <!-- Área de Serviços -->
-        <div class="servicos">
-            <h2>SISTEMAS OPERACIONAIS</h2>
+        <!-- Área 1: TEMPLATES OPERACIONAIS -->
+        <div class="secao" style="border-radius: 0;">
+            <h2 class="secao-titulo">📋 TEMPLATES OPERACIONAIS</h2>
             
             <div class="card-grid">
-                <!-- Card Boletim de Ocorrência -->
-                <div class="card card-bo" onclick="abrirTemplate('bo')">
-                    <div class="card-icone">📋</div>
-                    <h3 class="card-titulo">BOLETIM DE OCORRÊNCIA</h3>
-                    <p class="card-descricao">Registro completo de ocorrências policiais com todos os campos oficiais da PMMA.</p>
+                <!-- Boletim de Ocorrência -->
+                <div class="card card-template" onclick="abrirTemplate('bo')">
+                    <div class="card-icone">📄</div>
+                    <div class="card-titulo">BOLETIM DE OCORRÊNCIA</div>
+                    <div class="card-descricao">Registro completo de ocorrências policiais com todos os campos oficiais</div>
                     <span class="card-badge">Template Oficial</span>
                 </div>
 
-                <!-- Card Envolvidos -->
-                <div class="card card-envolvido" onclick="abrirTemplate('envolvidos')">
+                <!-- Envolvidos -->
+                <div class="card card-template" onclick="abrirTemplate('envolvidos')">
                     <div class="card-icone">👥</div>
-                    <h3 class="card-titulo">ENVOLVIDOS</h3>
-                    <p class="card-descricao">Cadastro de pessoas envolvidas em ocorrências: vítimas, testemunhas, suspeitos e conduzidos.</p>
+                    <div class="card-titulo">ENVOLVIDOS</div>
+                    <div class="card-descricao">Cadastro de vítimas, testemunhas, suspeitos e conduzidos</div>
                     <span class="card-badge">Em desenvolvimento</span>
                 </div>
 
-                <!-- Card Veículos -->
-                <div class="card card-veiculo" onclick="abrirTemplate('veiculos')">
+                <!-- Veículos -->
+                <div class="card card-template" onclick="abrirTemplate('veiculos')">
                     <div class="card-icone">🚗</div>
-                    <h3 class="card-titulo">VEÍCULOS</h3>
-                    <p class="card-descricao">Registro de veículos apreendidos, recuperados, furtados/roubados ou envolvidos em acidentes.</p>
+                    <div class="card-titulo">VEÍCULOS</div>
+                    <div class="card-descricao">Registro de veículos apreendidos, recuperados, furtados/roubados</div>
                     <span class="card-badge">Em desenvolvimento</span>
                 </div>
 
-                <!-- Card Objetos -->
-                <div class="card card-objeto" onclick="abrirTemplate('objetos')">
-                    <div class="card-icone">📦</div>
-                    <h3 class="card-titulo">OBJETOS</h3>
-                    <p class="card-descricao">Controle de objetos apreendidos, recuperados, furtados ou encontrados.</p>
-                    <span class="card-badge">Em desenvolvimento</span>
-                </div>
-
-                <!-- Card Relato Integrado -->
-                <div class="card card-relato" onclick="abrirTemplate('relato')">
-                    <div class="card-icone">✍️</div>
-                    <h3 class="card-titulo">RELATO INTEGRADO</h3>
-                    <p class="card-descricao">Sistema de relato policial com corretor ortográfico integrado via API LanguageTool.</p>
-                    <span class="card-badge">Novo!</span>
-                </div>
-
-                <!-- Card Providências -->
-                <div class="card card-providencias" onclick="abrirTemplate('providencias')">
-                    <div class="card-icone">⚡</div>
-                    <h3 class="card-titulo">PROVIDÊNCIAS</h3>
-                    <p class="card-descricao">Registro de documentos, diligências e procedimentos adotados na ocorrência.</p>
+                <!-- Acidente de Trânsito -->
+                <div class="card card-template" onclick="abrirTemplate('acidente')">
+                    <div class="card-icone">🚦</div>
+                    <div class="card-titulo">ACIDENTE DE TRÂNSITO</div>
+                    <div class="card-descricao">Registro específico para acidentes de trânsito</div>
                     <span class="card-badge">Em desenvolvimento</span>
                 </div>
             </div>
+        </div>
 
-            <!-- Acesso Rápido -->
+        <!-- Área 2: DOCUMENTOS E REQUISIÇÕES -->
+        <div class="secao">
+            <h2 class="secao-titulo">📑 DOCUMENTOS E REQUISIÇÕES</h2>
+            
+            <div class="card-grid">
+                <!-- Termo de Manifestação do Ofendido -->
+                <div class="card card-documento" onclick="abrirTemplate('termo-manifestacao')">
+                    <div class="card-icone">📝</div>
+                    <div class="card-titulo">TERMO DE MANIFESTAÇÃO DO OFENDIDO</div>
+                    <div class="card-descricao">Registro da manifestação da vítima/ofendido</div>
+                    <span class="card-badge">Em desenvolvimento</span>
+                </div>
+
+                <!-- Exame de Corpo de Delito - Lesão Corporal -->
+                <div class="card card-exame" onclick="abrirTemplate('exame-lesao')">
+                    <div class="card-icone">🩺</div>
+                    <div class="card-titulo">EXAME DE CORPO DE DELITO<br>LESÃO CORPORAL</div>
+                    <div class="card-descricao">Requisição para exame de lesão corporal</div>
+                    <span class="card-badge">Em desenvolvimento</span>
+                </div>
+
+                <!-- Exame de Corpo de Delito - Dano -->
+                <div class="card card-exame" onclick="abrirTemplate('exame-dano')">
+                    <div class="card-icone">🔨</div>
+                    <div class="card-titulo">EXAME DE CORPO DE DELITO<br>DANO</div>
+                    <div class="card-descricao">Requisição para exame de dano</div>
+                    <span class="card-badge">Em desenvolvimento</span>
+                </div>
+
+                <!-- Termo de Apreensão e Depósito -->
+                <div class="card card-documento" onclick="abrirTemplate('apreensão')">
+                    <div class="card-icone">📦</div>
+                    <div class="card-titulo">TERMO DE APREENSÃO E DEPÓSITO</div>
+                    <div class="card-descricao">Registro de objetos apreendidos</div>
+                    <span class="card-badge">Em desenvolvimento</span>
+                </div>
+
+                <!-- Requisição de Laudo de Constatação de Droga -->
+                <div class="card card-exame" onclick="abrirTemplate('laudo-droga')">
+                    <div class="card-icone">💊</div>
+                    <div class="card-titulo">LAUDO DE CONSTATAÇÃO DE DROGA</div>
+                    <div class="card-descricao">Requisição para constatação de natureza e quantidade de droga</div>
+                    <span class="card-badge">Em desenvolvimento</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Divisória -->
+        <div class="divisoria"></div>
+
+        <!-- Área 3: SEÇÕES DO BPM -->
+        <div class="secao" style="border-radius: 0 0 20px 20px;">
+            <h2 class="secao-titulo">🏢 SEÇÕES DO 35º BPM</h2>
+            
+            <div class="card-grid">
+                <!-- P1 - Pessoal -->
+                <div class="card card-secao" onclick="abrirSecao('p1')">
+                    <div class="card-icone">👤</div>
+                    <div class="card-titulo">P1 - PESSOAL</div>
+                    <div class="card-descricao">Administração de pessoal, escalas e férias</div>
+                    <span class="card-badge">Seção</span>
+                </div>
+
+                <!-- P3 - Operações -->
+                <div class="card card-secao" onclick="abrirSecao('p3')">
+                    <div class="card-icone">🚔</div>
+                    <div class="card-titulo">P3 - OPERAÇÕES</div>
+                    <div class="card-descricao">Planejamento operacional, estatística e ocorrências</div>
+                    <span class="card-badge">Seção</span>
+                </div>
+
+                <!-- P4 - Logística -->
+                <div class="card card-secao" onclick="abrirSecao('p4')">
+                    <div class="card-icone">📦</div>
+                    <div class="card-titulo">P4 - LOGÍSTICA</div>
+                    <div class="card-descricao">Material, patrimônio, fardamento e almoxarifado</div>
+                    <span class="card-badge">Seção</span>
+                </div>
+            </div>
+
+            <!-- Acesso Rápido Interno -->
             <div class="acesso-rapido">
                 <button class="btn-acesso" onclick="abrirTemplate('bo')">
-                    <span>📋</span> ABRIR BOLETIM DE OCORRÊNCIA
+                    <span>📋</span> BOLETIM DE OCORRÊNCIA
                 </button>
                 <button class="btn-acesso" onclick="mostrarAviso()">
-                    <span>📊</span> RELATÓRIOS
+                    <span>📊</span> RELATÓRIOS P3
                 </button>
                 <button class="btn-acesso" onclick="mostrarAviso()">
-                    <span>⚙️</span> CONFIGURAÇÕES
+                    <span>📅</span> ESCALA P1
                 </button>
                 <button class="btn-acesso" onclick="mostrarAviso()">
-                    <span>❓</span> AJUDA
+                    <span>📦</span> ALMOXARIFADO P4
                 </button>
             </div>
         </div>
 
         <!-- Rodapé -->
         <div class="footer">
-            <p>© 2026 - 35º BPM | Polícia Militar do Maranhão - Todos os direitos reservados</p>
-            <p>Sistema desenvolvido para uso interno | Versão 2.0.0</p>
-            <p><a href="#" onclick="mostrarInfo()">Sobre o sistema</a> | <a href="#" onclick="mostrarAviso()">Contato</a> | <a href="#" onclick="mostrarAviso()">Privacidade</a></p>
+            <p>© 2026 - 35º BPM | Polícia Militar do Maranhão - Uso Interno</p>
+            <p>Sistema Integrado de Gestão Operacional | Versão 2.0.0</p>
+            <p>
+                <a href="#" onclick="mostrarInfo()">Sobre</a> | 
+                <a href="#" onclick="mostrarContato()">Contato P3</a> | 
+                <a href="#" onclick="mostrarAviso()">Suporte Técnico</a>
+            </p>
         </div>
     </div>
 
-    <!-- Modal de aviso (para funcionalidades em desenvolvimento) -->
+    <!-- Modal de aviso -->
     <div id="modal-aviso" class="modal">
         <div class="modal-content">
             <h3>🔧 EM DESENVOLVIMENTO</h3>
-            <p>Esta funcionalidade está sendo implementada e estará disponível em breve. Por favor, utilize o Boletim de Ocorrência disponível.</p>
+            <p>Esta funcionalidade está sendo implementada e estará disponível em breve para os policiais do 35º BPM.</p>
+            <p>Para utilizar o Boletim de Ocorrência, clique no card correspondente.</p>
             <div class="modal-buttons">
                 <button class="modal-btn confirm" onclick="fecharModal()">OK</button>
             </div>
         </div>
     </div>
 
-    <!-- Modal de informações do sistema -->
+    <!-- Modal de informações -->
     <div id="modal-info" class="modal">
         <div class="modal-content">
-            <h3>ℹ️ SOBRE O SISTEMA</h3>
-            <p><strong>Sistema de Registro de Ocorrências PMMA</strong></p>
+            <h3>ℹ️ SISTEMA INTERNO 35º BPM</h3>
+            <p><strong>Sistema de Gestão Operacional</strong></p>
             <p>Versão: 2.0.0</p>
-            <p>Desenvolvido para o 35º BPM - O Guardião do Médio Sertão</p>
-            <p>Funcionalidades: Template de BO, corretor ortográfico, exportação PDF/Word</p>
-            <p>Em parceria com o Patrimônio dos Maranhenses</p>
+            <p>Desenvolvido para uso exclusivo dos policiais militares lotados no 35º BPM - O Guardião do Médio Sertão</p>
+            <p>Em caso de problemas, contatar a P3 ou o Suporte Técnico</p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" onclick="fecharModal()">FECHAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de contato -->
+    <div id="modal-contato" class="modal">
+        <div class="modal-content">
+            <h3>📞 CONTATOS INTERNOS</h3>
+            <p><strong>P3 - Operações:</strong> Ramal 123</p>
+            <p><strong>P1 - Pessoal:</strong> Ramal 124</p>
+            <p><strong>P4 - Logística:</strong> Ramal 125</p>
+            <p><strong>Suporte Técnico:</strong> suporte.35bpm@pm.ma.gov.br</p>
             <div class="modal-buttons">
                 <button class="modal-btn confirm" onclick="fecharModal()">FECHAR</button>
             </div>
@@ -494,24 +563,36 @@
     </div>
 
     <script>
-        // Funções de navegação
+        // Funções de navegação para templates
         function abrirTemplate(tipo) {
             if (tipo === 'bo') {
-                // Abre o template do Boletim de Ocorrência
-                window.location.href = 'boletim.html'; // Nome do seu arquivo do BO
+                window.location.href = 'boletim.html';
             } else {
-                // Para os demais, mostra aviso
                 mostrarAviso();
             }
         }
 
-        // Funções para os modais
+        // Funções para seções
+        function abrirSecao(secao) {
+            let mensagem = '';
+            if (secao === 'p1') mensagem = 'Seção P1 - Pessoal';
+            else if (secao === 'p3') mensagem = 'Seção P3 - Operações';
+            else if (secao === 'p4') mensagem = 'Seção P4 - Logística';
+            
+            alert(`🚧 ${mensagem} - Sistema em desenvolvimento`);
+        }
+
+        // Funções para modais
         function mostrarAviso() {
             document.getElementById('modal-aviso').style.display = 'flex';
         }
 
         function mostrarInfo() {
             document.getElementById('modal-info').style.display = 'flex';
+        }
+
+        function mostrarContato() {
+            document.getElementById('modal-contato').style.display = 'flex';
         }
 
         function fecharModal() {
@@ -527,22 +608,19 @@
             }
         }
 
-        // Adicionar eventos de teclado
+        // Tecla ESC fecha modal
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 fecharModal();
             }
         });
 
-        // Efeito de destaque no card do BO
+        // Destaque no card do BO
         document.addEventListener('DOMContentLoaded', function() {
-            const cardBO = document.querySelector('.card-bo');
-            cardBO.classList.add('card-destaque');
-            
-            // Remover o destaque após 5 segundos
-            setTimeout(() => {
-                cardBO.classList.remove('card-destaque');
-            }, 5000);
+            const cardBO = document.querySelector('.card-template');
+            if (cardBO) {
+                cardBO.classList.add('card-destaque');
+            }
         });
     </script>
 </body>
